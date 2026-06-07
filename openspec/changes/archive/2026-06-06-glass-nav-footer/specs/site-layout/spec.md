@@ -1,9 +1,4 @@
-# site-layout Specification
-
-## Purpose
-TBD - created by archiving change init-astro-site. Update Purpose after archive.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Base layout wraps all pages
 The site SHALL provide a `BaseLayout.astro` component that wraps every page with a consistent HTML shell including `<head>`, a scrollable content area (`#scroll-root`), a `<main>` slot, and a persistent bottom `<footer>`.
@@ -19,3 +14,9 @@ The site SHALL provide a `BaseLayout.astro` component that wraps every page with
 #### Scenario: Viewport is configured for edge-to-edge iOS rendering
 - **WHEN** any page is rendered
 - **THEN** the `<meta name="viewport">` tag SHALL include `viewport-fit=cover`
+
+## REMOVED Requirements
+
+### Requirement: Navigation links to all top-level routes
+**Reason**: Top navigation replaced by the persistent bottom navigation footer defined in the `bottom-nav` capability. Route links are now managed by `Footer.astro`.
+**Migration**: See `bottom-nav` spec for the navigation link requirement.

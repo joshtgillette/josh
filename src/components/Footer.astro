@@ -1,0 +1,55 @@
+---
+const links = [
+  { href: '/', label: 'me' },
+  { href: '/blog', label: 'blog' },
+  { href: '/projects', label: 'projects' },
+];
+
+const current = Astro.url.pathname;
+const activeIndex = links.findIndex(({ href }) =>
+  href === '/' ? current === '/' : current.startsWith(href)
+);
+---
+
+<footer transition:persist>
+  <span id="nav-indicator" aria-hidden="true"></span>
+  <div class="nav-links">
+    {links.map(({ href, label }, i) => (
+      <a href={href} class:list={{ active: i === activeIndex }}>{label}</a>
+    ))}
+  </div>
+</footer>
+
+<script>
+  const hrefs = ['/', '/blog', '/projects'];
+
+  document.addEventListener('astro:page-load', () => {
+    const footer = document.querySelector<HTMLElement>('footer');
+    if (!footer) return;
+
+    const path = window.location.pathname;
+    const index = hrefs.findIndex(href =>
+      href === '/' ? path === '/' : path.startsWith(href)
+    );
+
+    const links = footer.querySelectorAll<HTMLAnchorElement>('a');
+    links.forEach((a, i) => a.classList.toggle('active', i === index));
+
+    const active = links[index];
+    if (!active) return;
+
+    const indicator = footer.querySelector<HTMLElement>('#nav-indicator');
+    if (!indicator) return;
+
+    const fr = footer.getBoundingClientRect();
+    const ar = active.getBoundingClientRect();
+
+    indicator.style.left = `${ar.left - fr.left}px`;
+    indicator.style.width = `${ar.width}px`;
+
+    if (!footer.classList.contains('ready')) {
+      indicator.style.opacity = '1';
+      requestAnimationFrame(() => footer.classList.add('ready'));
+    }
+  });
+</script>

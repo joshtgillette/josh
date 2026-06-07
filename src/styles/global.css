@@ -1,1 +1,91 @@
 @import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: Canvas;
+  color: CanvasText;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+#scroll-root {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+main {
+  max-width: 680px;
+  margin-inline: auto;
+  padding: 2rem 1.25rem 6rem;
+}
+
+footer {
+  --p: 0.35rem;
+  position: fixed;
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  padding: var(--p);
+  backdrop-filter: blur(40px) saturate(160%);
+  -webkit-backdrop-filter: blur(40px) saturate(160%);
+  background: color-mix(in srgb, light-dark(Canvas, color-mix(in srgb, white 10%, Canvas)) 62%, transparent);
+  border: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+  border-radius: 999px;
+  box-shadow:
+    0 2px 20px color-mix(in srgb, black 14%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
+  z-index: 50;
+}
+
+footer .nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+footer a {
+  text-decoration: none;
+  padding: 0.90rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: color-mix(in srgb, CanvasText 45%, transparent);
+  border-radius: 999px;
+  transition: color 120ms ease;
+}
+
+footer a.active {
+  color: CanvasText;
+}
+
+footer #nav-indicator {
+  position: absolute;
+  top: var(--p);
+  bottom: var(--p);
+  left: 0;
+  width: 0;
+  background: color-mix(in srgb, CanvasText 5%, transparent);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+footer.ready #nav-indicator {
+  transition:
+    left 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    width 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer a:hover:not(.active) {
+  color: color-mix(in srgb, CanvasText 70%, transparent);
+}

@@ -1,5 +1,6 @@
 ---
-import Nav from '../components/Nav.astro';
+import { ClientRouter } from 'astro:transitions';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -13,16 +14,17 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
-    <Nav />
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>&copy; {new Date().getFullYear()}</p>
-    </footer>
+    <div id="scroll-root">
+      <main>
+        <slot />
+      </main>
+    </div>
+    <Footer />
   </body>
 </html>

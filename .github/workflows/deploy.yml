@@ -11,6 +11,6 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > key && chmod 600 key
           ssh -i key -o StrictHostKeyChecking=no root@5.161.122.7 "
-            cd /opt/josh && git pull && npm install && npm run build
+            cd /opt/josh && git stash && git pull --rebase && npm install && npm run build
           "
           rm key
