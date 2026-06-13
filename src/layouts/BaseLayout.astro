@@ -26,5 +26,28 @@ const { title } = Astro.props;
       </main>
     </div>
     <Footer />
+    <script>
+      // Private page-view beacon. Fires on initial load and every client-side
+      // navigation, deduped per path per session. Skipped on localhost so dev
+      // never counts. Counts are read from the hidden /api/views endpoint.
+      function recordView() {
+        const host = window.location.hostname;
+        if (host === 'localhost' || host === '127.0.0.1') return;
+
+        const key = window.location.pathname.replace(/^\/+|\/+$/g, '') || 'me';
+        const seen = `viewed:${key}`;
+        if (sessionStorage.getItem(seen)) return;
+        sessionStorage.setItem(seen, '1');
+
+        const url = `/api/views/${key}`;
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(url);
+        } else {
+          fetch(url, { method: 'POST', keepalive: true }).catch(() => {});
+        }
+      }
+
+      document.addEventListener('astro:page-load', recordView);
+    </script>
   </body>
 </html>

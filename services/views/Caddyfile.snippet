@@ -1,0 +1,46 @@
+# One-time gateway changes for view tracking (containerized).
+#
+# The shared gateway lives in /opt/caddy. Caddy runs as a container on the
+# `soal-shared` Docker network, so the counter also runs as a container on that
+# network and the gateway reaches it by name — exactly like the soal backends.
+#
+# --- 1. /opt/caddy/Caddyfile -------------------------------------------------
+# Replace the joshgillette.build block so /api/views/* is proxied to the counter
+# container and everything else is served statically:
+#
+# joshgillette.build {
+#     @views path /api/views /api/views/*
+#     handle @views {
+#         reverse_proxy josh-views:8788
+#     }
+#     handle {
+#         root * /srv/josh
+#         file_server
+#     }
+# }
+#
+# (The matcher lists both /api/views and /api/views/* so the summary endpoint
+#  at the bare path is proxied too, not just the per-key sub-paths.)
+#
+# --- 2. /opt/caddy/docker-compose.yml ---------------------------------------
+# Add a service (alongside `caddy`) that builds this directory and joins the
+# same network. No ports are published, so it is never exposed to the host or
+# the public internet — only reachable via the gateway:
+#
+#   josh-views:
+#     build: /opt/josh/services/views
+#     restart: unless-stopped
+#     environment:
+#       - VIEWS_DB=/data/views.db
+#       - VIEWS_HOST=0.0.0.0
+#     volumes:
+#       - /opt/josh-views:/data
+#     networks:
+#       - soal-shared
+#
+# --- 3. Apply ----------------------------------------------------------------
+#   mkdir -p /opt/josh-views
+#   cd /opt/caddy && docker compose up -d --build   # builds counter, reloads caddy
+#
+# This is the only manual, one-time setup. Afterwards the deploy workflow
+# rebuilds and restarts the counter container automatically on every deploy.
