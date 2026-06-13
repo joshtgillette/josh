@@ -89,3 +89,118 @@ footer.ready #nav-indicator {
 footer a:hover:not(.active) {
   color: color-mix(in srgb, CanvasText 70%, transparent);
 }
+
+/* Reading / content pages — minimal text on background */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  letter-spacing: -0.011em;
+  color: color-mix(in srgb, CanvasText 88%, transparent);
+}
+
+.prose-header {
+  margin-bottom: 2.5rem;
+}
+
+.prose-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: CanvasText;
+}
+
+.prose-header time {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: color-mix(in srgb, CanvasText 45%, transparent);
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  margin: 2.25rem 0 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: CanvasText;
+}
+
+.prose h1 { font-size: 1.5rem; }
+.prose h2 { font-size: 1.25rem; }
+.prose h3 { font-size: 1.0625rem; }
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote {
+  margin: 0 0 1.25rem;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+}
+
+.prose li {
+  margin: 0.35rem 0;
+}
+
+.prose a {
+  color: CanvasText;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, CanvasText 35%, transparent);
+  transition: text-decoration-color 120ms ease;
+}
+
+.prose a:hover {
+  text-decoration-color: CanvasText;
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.prose blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid color-mix(in srgb, CanvasText 20%, transparent);
+  color: color-mix(in srgb, CanvasText 65%, transparent);
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+  background: color-mix(in srgb, CanvasText 8%, transparent);
+}
+
+.prose pre {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 0.6rem;
+  overflow-x: auto;
+  background: color-mix(in srgb, CanvasText 6%, transparent);
+}
+
+.prose pre code {
+  padding: 0;
+  background: none;
+  font-size: 0.8125rem;
+}
+
+.prose hr {
+  margin: 2.5rem 0;
+  border: none;
+  border-top: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+}
