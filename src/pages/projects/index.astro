@@ -1,6 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryCard from '../../components/EntryCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
+);
 ---
 
 <BaseLayout title="Projects">
+  {projects.length > 0 ? (
+    <div class="entry-list">
+      {projects.map((p) => (
+        <EntryCard
+          href={`/projects/${p.id}`}
+          title={p.data.title}
+          description={p.data.description}
+        />
+      ))}
+    </div>
+  ) : (
+    <p class="entry-empty">Nothing here yet.</p>
+  )}
 </BaseLayout>

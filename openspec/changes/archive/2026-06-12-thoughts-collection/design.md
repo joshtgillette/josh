@@ -20,7 +20,7 @@ The `blog`/`projects` collections were defined but empty, and the section pages 
 `blog` becomes `thoughts` in `content.config.ts` and the content folder is renamed. A single rename keeps `getCollection('thoughts')` and the route name aligned; there is no content to migrate (the collection was empty).
 
 **`EntryCard` is a single `<a>`, styled in `global.css`**
-The whole row is the link target (large tap area, no nested interactive elements, no separate arrow affordance — the pointer cursor and a title underline on hover signal clickability). Like the footer and prose, the styles live in `global.css` to survive `ClientRouter` head swaps. The card supports an optional `date` (shown bottom-right for Thoughts) and an `external` flag (used by Projects in a later change) that adds `target=_blank` / `rel=noopener`.
+The whole row is the link target (large tap area, no nested interactive elements, no separate arrow affordance — the pointer cursor alone signals clickability). Like the footer and prose, the styles live in `global.css` to survive `ClientRouter` head swaps. The card supports an optional `date` (shown bottom-right for Thoughts). (An `external` flag for opening links in a new tab existed at this stage but was later removed in the projects-collection change.)
 
 **Plain list with hairline dividers over bordered cards**
 The listing iterated from a glass-bordered card to a plain, chrome-light list: rows separated by a full-width 2px divider in the glass-border color (`color-mix(in srgb, CanvasText 12%, transparent)`), applied via `.entry-card + .entry-card { border-top }` so dividers fall only between items. This keeps the reading surface and the index visually quiet, consistent with the minimal aesthetic.

@@ -142,12 +142,6 @@ footer a:hover:not(.active) {
   color: color-mix(in srgb, CanvasText 45%, transparent);
 }
 
-.entry-card:hover .entry-card-title {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-  text-decoration-color: color-mix(in srgb, CanvasText 35%, transparent);
-}
-
 /* Reading / content pages — minimal text on background */
 .prose {
   font-size: 1.0625rem;
