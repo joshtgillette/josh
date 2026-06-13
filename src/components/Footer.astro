@@ -1,7 +1,7 @@
 ---
 const links = [
   { href: '/', label: 'me' },
-  { href: '/blog', label: 'blog' },
+  { href: '/thoughts', label: 'thoughts' },
   { href: '/projects', label: 'projects' },
 ];
 
@@ -21,7 +21,7 @@ const activeIndex = links.findIndex(({ href }) =>
 </footer>
 
 <script>
-  const hrefs = ['/', '/blog', '/projects'];
+  const hrefs = ['/', '/thoughts', '/projects'];
 
   document.addEventListener('astro:page-load', () => {
     const footer = document.querySelector<HTMLElement>('footer');

@@ -1,0 +1,27 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date?: Date;
+  external?: boolean;
+}
+
+const { href, title, description, date, external } = Astro.props;
+
+const formattedDate = date
+  ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
+
+const linkAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<a class="entry-card" href={href} {...linkAttrs}>
+  <h2 class="entry-card-title">{title}</h2>
+  <p class="entry-card-desc">{description}</p>
+  {formattedDate && (
+    <div class="entry-card-foot">
+      <time class="entry-card-date" datetime={date!.toISOString()}>{formattedDate}</time>
+    </div>
+  )}
+</a>

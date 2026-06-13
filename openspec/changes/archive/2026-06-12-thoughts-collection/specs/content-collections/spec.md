@@ -1,14 +1,9 @@
-# content-collections Specification
+## REMOVED Requirements
 
-## Purpose
-TBD - created by archiving change init-astro-site. Update Purpose after archive.
-## Requirements
-### Requirement: Projects collection is defined with a typed schema
-The site SHALL define a `projects` Content Collection in `src/content.config.ts` with a Zod schema that enforces: `title` (string), `description` (string), and `url` (string, optional).
+### Requirement: Blog collection is defined with a typed schema
+**Reason**: Renamed to the `thoughts` collection.
 
-#### Scenario: Valid project entry passes schema validation
-- **WHEN** a Markdown file in `src/content/projects/` includes `title` and `description` frontmatter
-- **THEN** Astro SHALL successfully build and expose the entry via `getCollection('projects')`
+## ADDED Requirements
 
 ### Requirement: Thoughts collection is defined with a typed schema
 The site SHALL define a `thoughts` Content Collection in `src/content.config.ts` with a Zod schema that enforces required frontmatter fields: `title` (string), `date` (date), and `description` (string), loaded from `src/content/thoughts/`.
@@ -20,4 +15,3 @@ The site SHALL define a `thoughts` Content Collection in `src/content.config.ts`
 #### Scenario: Thought missing required field fails validation
 - **WHEN** a Markdown file in `src/content/thoughts/` is missing a required frontmatter field
 - **THEN** Astro's build SHALL throw a validation error identifying the missing field
-

@@ -2,9 +2,7 @@
 
 ## Purpose
 Persistent floating bottom navigation bar with glass morphism styling, active route tracking, and an animated sliding indicator. Introduced by the glass-nav-footer change.
-
 ## Requirements
-
 ### Requirement: Floating glass pill navigation persists across page transitions
 The site SHALL render a `Footer.astro` component as a floating, pill-shaped bottom navigation bar that is preserved across client-side page navigations via `transition:persist`.
 
@@ -17,11 +15,15 @@ The site SHALL render a `Footer.astro` component as a floating, pill-shaped bott
 - **THEN** the bottom navigation footer SHALL be present and visible
 
 ### Requirement: Navigation links to all top-level routes
-The footer SHALL contain navigation links to: Me (`/`), Blog (`/blog`), and Projects (`/projects`).
+The footer SHALL contain navigation links to: Me (`/`), Thoughts (`/thoughts`), and Projects (`/projects`).
 
 #### Scenario: All links are rendered
 - **WHEN** any page is rendered
-- **THEN** the footer SHALL contain exactly three `<a>` elements linking to `/`, `/blog`, and `/projects`
+- **THEN** the footer SHALL contain exactly three `<a>` elements linking to `/`, `/thoughts`, and `/projects`
+
+#### Scenario: Active class on the Thoughts route
+- **WHEN** the user is on `/thoughts` or any `/thoughts/<slug>` entry page
+- **THEN** the Thoughts `<a>` element SHALL have the `active` class and render in full `CanvasText` color
 
 ### Requirement: Active route is visually indicated
 The footer SHALL reflect the current route by applying an `active` class to the matching link on every page load.
@@ -66,3 +68,4 @@ The footer SHALL use `env(safe-area-inset-bottom)` for its bottom offset and SHA
 #### Scenario: No jitter on overscroll
 - **WHEN** the user scrolls past the top or bottom boundary of the page on iOS Safari
 - **THEN** the footer SHALL remain visually fixed and not follow the rubber-band animation
+

@@ -1,32 +1,9 @@
-# pages Specification
+## REMOVED Requirements
 
-## Purpose
-TBD - created by archiving change init-astro-site. Update Purpose after archive.
-## Requirements
-### Requirement: Home page exists at root route
-The site SHALL serve a page at `/` that renders the "me" Markdown content (`src/content/me.md`) through `ProseLayout`.
+### Requirement: Blog index page exists
+**Reason**: Replaced by the Thoughts listing at `/thoughts`.
 
-#### Scenario: Home page is accessible
-- **WHEN** a user navigates to `/`
-- **THEN** the server SHALL return a 200 response with a page using the base layout
-
-#### Scenario: Home page renders the me content
-- **WHEN** a user navigates to `/`
-- **THEN** the page SHALL render the Markdown from `src/content/me.md` inside an `<article class="prose">`
-
-### Requirement: Projects index page exists
-The site SHALL serve a page at `/projects` that uses `BaseLayout` and renders a placeholder indicating projects will appear here.
-
-#### Scenario: Projects index is accessible
-- **WHEN** a user navigates to `/projects`
-- **THEN** the server SHALL return a 200 response with a page using the base layout
-
-### Requirement: About page exists
-The site SHALL serve a page at `/about` that uses `BaseLayout` and renders placeholder content.
-
-#### Scenario: About page is accessible
-- **WHEN** a user navigates to `/about`
-- **THEN** the server SHALL return a 200 response with a page using the base layout
+## ADDED Requirements
 
 ### Requirement: Thoughts listing page lists entries
 The site SHALL serve a page at `/thoughts` that lists all `thoughts` entries, newest first, each rendered as an `EntryCard` linking to its entry page. When there are no entries, the page SHALL show an empty state.
@@ -53,4 +30,3 @@ The site SHALL serve a page at `/thoughts/<slug>` for each `thoughts` entry, whe
 #### Scenario: Slugs are hyphenated filenames
 - **WHEN** an entry is authored as `hello-world.md`
 - **THEN** its page SHALL be served at `/thoughts/hello-world`
-

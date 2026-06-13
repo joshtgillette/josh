@@ -90,6 +90,64 @@ footer a:hover:not(.active) {
   color: color-mix(in srgb, CanvasText 70%, transparent);
 }
 
+/* Entry cards — glass-bordered list items for Thoughts and Projects */
+.entry-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-empty {
+  color: color-mix(in srgb, CanvasText 45%, transparent);
+  font-size: 0.9375rem;
+}
+
+.entry-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: CanvasText;
+  padding: 1.5rem 0;
+}
+
+.entry-card:first-child {
+  padding-top: 0;
+}
+
+.entry-card + .entry-card {
+  border-top: 2px solid color-mix(in srgb, CanvasText 12%, transparent);
+}
+
+.entry-card-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.entry-card-desc {
+  margin: 0.4rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, CanvasText 60%, transparent);
+}
+
+.entry-card-foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.entry-card-date {
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, CanvasText 45%, transparent);
+}
+
+.entry-card:hover .entry-card-title {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, CanvasText 35%, transparent);
+}
+
 /* Reading / content pages — minimal text on background */
 .prose {
   font-size: 1.0625rem;
